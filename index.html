@@ -26,15 +26,20 @@
 	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyB_X7IXJcLXaWAQ0kFDjG3_q35G-P9XkMU"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var center = {lat: 39.7634727, lng: -104.9725622};
+
 			// Center map in Denver.
 			var map = new google.maps.Map(document.getElementById('map'), {
-		    center: {lat: 39.7634727, lng: -104.9725622},
+		    center: center,
 		    zoom: 10
 		  });
 
 			// Add KML layer.
 			var layer = new google.maps.KmlLayer('http://joelstein.github.io/svdp-denver-map/boundaries.kml');
 			layer.setMap(map);
+
+			// Set center (again).
+			map.setCenter(center);
 
 			// When form is submitted, geocode and recenter.
 			var geocoder = new google.maps.Geocoder();
