@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Parish Finder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Parish Finder</title>
 </head>
 <body>
 
-	<p>To get help or get involved, enter your home address below.</p>
+  <p>To get help or get involved, enter your home address below.</p>
 
-	<form>
-		<p>
-			Your address<br>
-			<input type="text" name="address" required>
-		</p>
-		<p>
-			<input type="submit" value="Search">
-		</p>
-	</form>
+  <form>
+    <p>
+      Your address<br>
+      <input type="text" name="address" required>
+    </p>
+    <p>
+      <input type="submit" value="Search">
+    </p>
+  </form>
 
-	<p>After submitting your home address, click on the colored area surrounding the pin icon to learn more about your local conference.</p>
+  <p>After submitting your home address, click on the colored area surrounding the pin icon to learn more about your local conference.</p>
 
-	<div id="map" style="width: 100%; height: 500px"></div>
+  <div id="map" style="width: 100%; height: 500px"></div>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyB_X7IXJcLXaWAQ0kFDjG3_q35G-P9XkMU"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var center = {lat: 39.7634727, lng: -104.9725622};
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyB_X7IXJcLXaWAQ0kFDjG3_q35G-P9XkMU"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var center = {lat: 39.7634727, lng: -104.9725622};
 
-			// Center map in Denver.
-			var map = new google.maps.Map(document.getElementById('map'), {
-		    center: center,
-		    zoom: 10
-		  });
+      // Center map in Denver.
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: center,
+        zoom: 10
+      });
 
-			// Add KML layer.
-			var layer = new google.maps.KmlLayer('http://joelstein.github.io/svdp-denver-map/boundaries.kml');
-			layer.setMap(map);
+      // Add KML layer.
+      var layer = new google.maps.KmlLayer('http://joelstein.github.io/svdp-denver-map/boundaries.kml');
+      layer.setMap(map);
 
-			// Set center (again).
-			map.setCenter(center);
+      // Set center (again).
+      map.setCenter(center);
 
-			// When form is submitted, geocode and recenter.
-			var geocoder = new google.maps.Geocoder();
-			$('form').submit(function() {
-				geocoder.geocode({'address': $('input[name=address]').val()}, function(results, status) {
-				  if (status == google.maps.GeocoderStatus.OK) {
-				    map.setCenter(results[0].geometry.location);
-				    var marker = new google.maps.Marker({
-				      map: map,
-				      position: results[0].geometry.location,
-							title: results[0].formatted_address
-				    });
-				    map.setZoom(14);
-				  }
-					else {
-				  	alert("We had trouble locating your address on the map. Please try again.");
-				  }
-				});
-				return false;
-			});
-		});
-	</script>
+      // When form is submitted, geocode and recenter.
+      var geocoder = new google.maps.Geocoder();
+      $('form').submit(function() {
+        geocoder.geocode({'address': $('input[name=address]').val()}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location,
+              title: results[0].formatted_address
+            });
+            map.setZoom(14);
+          }
+          else {
+            alert("We had trouble locating your address on the map. Please try again.");
+          }
+        });
+        return false;
+      });
+    });
+  </script>
 
 </body>
 </html>
