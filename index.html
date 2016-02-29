@@ -6,20 +6,21 @@
 </head>
 <body style="margin: 0">
 
-  <form>
-    <p style="font-family: Georgia, serif">
-      <label for="address">Your address:</label>
-      <input type="text" name="address" id="address" required>
-      <input type="submit" value="Search">
-    </p>
+  <form style="font-family: Georgia, serif; margin-bottom: 1em">
+    <label for="address">Your address:</label>
+    <input type="text" name="address" id="address" required>
+    <input type="submit" value="Search">
   </form>
 
-  <div id="map" style="width: 100%; height: 500px"></div>
+  <div id="map" style="width: 100%"></div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyB_X7IXJcLXaWAQ0kFDjG3_q35G-P9XkMU"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      // Set map height to window height minus form height.
+      $('#map').height($(window).height() - $('form').outerHeight());
+
       // Center map in Denver.
       var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 39.7634727, lng: -104.9725622},
