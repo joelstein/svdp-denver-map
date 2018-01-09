@@ -28,7 +28,8 @@
       });
 
       // Add KML layer.
-      var layer = new google.maps.KmlLayer('https://www.google.com/maps/d/kml?forcekml=1&mid=1C7PnqmTRi1fVBA0Rrku5C-hPOPw', {
+      var cacheBust = (new Date()).getTime();
+      var layer = new google.maps.KmlLayer('https://joelstein.github.io/svdp-denver-map/boundaries.kml?cacheBust=' + cacheBust, {
         map: map,
         preserveViewport: true
       });
