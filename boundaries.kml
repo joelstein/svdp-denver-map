@@ -7,6 +7,8 @@
       <name>SVDP Denver</name>
       <Link>
         <href><![CDATA[https://www.google.com/maps/d/kml?forcekml=1&mid=1C7PnqmTRi1fVBA0Rrku5C-hPOPw]]></href>
+        <refreshMode>onInterval</refreshMode>
+        <refreshInterval>60</refreshInterval>
       </Link>
     </NetworkLink>
   </Document>
